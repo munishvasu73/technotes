@@ -1,0 +1,14 @@
+
+
+PRIVILEGES OF MYSQL BACKUP USER FOR MYSQLDUMP
+
+Some MySQL customers do not want to use the root user for mysqldump backups. For this user you have to grant the following minimal MySQL privileges:
+
+MYSQLDUMP --SINGLE-TRANSACTION (INNODB)
+###########################################
+CREATE USER 'backup'@'localhost' IDENTIFIED BY 'secret';
+GRANT SELECT, SHOW VIEW, RELOAD, REPLICATION CLIENT, EVENT, TRIGGER ON *.* TO 'backup'@'localhost';
+
+MYSQLDUMP --LOCK-ALL-TABLES (MYISAM)
+####################################
+GRANT LOCK TABLES ON *.* TO 'backup'@'localhost';
