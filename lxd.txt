@@ -1,0 +1,27 @@
+
+
+
+apt install -y git build-essential libssl-dev python3-venv python3-pip python3-dev zfsutils-linux bridge-utils
+
+
+sudo snap install lxd
+
+lxd init
+
+
+sudo zpool create new-pool mirror /dev/sdb /dev/sdc
+
+
+
+ Increasing file and inode limits
+Since it’s entirely possible we may in the future wish to run multiple LXD containers, it’s a good idea to already increase the number of open files and inode limits, this will prevent the dreaded “too many open files” errors which commonly occur with container solutions.
+
+For the inode limits, open the sysctl.conf file as follows:
+
+sudo vim /etc/sysctl.conf
+
+Now add the following lines, as recommended by the LXD project
+
+fs.inotify.max_queued_events = 1048576
+fs.inotify.max_user_instances = 1048576
+fs.inotify.max_user_watches = 1048576
