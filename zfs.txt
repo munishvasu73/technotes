@@ -1,0 +1,18 @@
+lxc image export policymaster01-backup .
+
+
+lxc config device add CONTAINER-NAME eth1 nic name=eth1 nictype=bridged parent=lxdbr0
+
+
+
+
+Displaying and Accessing ZFS Snapshots
+By default, snapshots are no longer displayed in the zfs list output. You must use the zfs list –t snapshot command to display snapshot information. Or, enable the listsnapshots pool property. For example:
+
+# zpool get listsnapshots tank
+NAME  PROPERTY       VALUE      SOURCE
+tank  listsnapshots  off        default
+# zpool set listsnapshots=on tank
+# zpool get listsnapshots tank
+NAME  PROPERTY       VALUE      SOURCE
+tank  listsnapshots  on         local
