@@ -1,0 +1,80 @@
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ssh cipher hardcoded
+
+Centos 7
+
+1> check ssh code
+sshd -T | grep "\(ciphers\|macs\|kexalgorithms\)"
+
+ciphers chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+macs umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+
+2> add /etc/ssh/sshd_config
+
+ciphers chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+SSL cerficicate
+
+enable only TLSv1.2
+
+############################################
+
+Timestamp issue
+
+root@fusionpbx02:~# nano /etc/sysctl.conf
+root@fusionpbx02:~# sysctl -p
+net.ipv4.tcp_timestamps = 0
+root@fusionpbx02:~# sysctl net.ipv4.tcp_timestamps
+net.ipv4.tcp_timestamps = 0
+root@fusionpbx02:~# net.ipv4.tcp_timestamps = 0
+
+
+######################################
+webmin remote code execution
+
+Webmin 1.900 - Remote Command Execution (Metasploit)
+This is NOT a workable exploit as it requires that the attacker already know the root password. Hence there is no fix for it in Webmin.
+
+#######################################
+
+Trace issue
+#curl -i -X TRACE 192.168.10.288
+
+add at end
+nano /etc/httpd/conf/httpd.conf
+TraceEnable off
+#service httpd restart
+
+vim /etc/httpd/conf/httpd.conf 
+TraceEnable Off
+
+ 
+
+To turn off track and trace methods for individual virtual hosts add the follwowing to the vhost config:
+RewriteEngine On 
+RewriteCond %{REQUEST_METHOD} ^TRACE 
+RewriteRule .* - [F]
+ 
+ RewriteEngine On
+    RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+    RewriteRule .* - [F]
+	
+	####################
+	
+	ServerTokens Prod
+ServerSignature Off
+
+
+in httpd/conf/httpd.conf
+Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
+
+for nginx
+Another alternative option is to add the below syntax in ssl.conf or default.conf
+
+proxy_cookie_path / "/; HTTPOnly; Secure";
+
+
+
