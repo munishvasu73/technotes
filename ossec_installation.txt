@@ -1,0 +1,32 @@
+wget -q -O - https://updates.atomicorp.com/installers/atomic | sudo bash
+
+redhat
+https://updates.atomicorp.com/channels/atomic/centos/6/x86_64/RPMS/
+
+wget -q -O - https://updates.atomicorp.com/installers/atomic | sudo bash
+
+
+
+apt update
+apt-get install ossec-hids-agent
+
+ yum install ossec-hids-agent
+
+
+
+
+/etc/init.d/ossec-hids-agent start
+systemctl status ossec
+systemctl start  ossec
+
+nano /etc/ossec-init.conf
+nano /var/ossec/etc/ossec.conf
+
+/var/ossec/bin/manage_agents
+systemctl restart  ossec
+cat /var/ossec/logs/ossec.log
+
+
+wget -qO- https://ubuntu.bigbluebutton.org/bbb-install.sh | bash -s -- -v xenial-200 -s teammeet.nationxpress.co -e itsupport@ -t -g
+
+ wget -O speedtest-cli https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py
