@@ -1,0 +1,11 @@
+Zimbra Document
+
+
+Get list of users
+#zmprov -l gaa [domain.com]
+
+For archive list
+#zmprov -l gaa [domain.com] | grep in@archive
+#zmprov -l gaa [domain.com] | grep out@archive
+
+
