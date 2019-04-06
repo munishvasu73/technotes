@@ -9,3 +9,31 @@ For archive list
 #zmprov -l gaa [domain.com] | grep out@archive
 
 
+
+For in and out of archive
+#cd /opt/zimbra/common/conf
+#vim archivelist-receving
+#vim archivelist-sending
+#postmap /opt/zimbra/common/conf/archivelist-sending
+#postmap /opt/zimbra/common/conf/archivelist-receving
+
+
+
+
+     Zimbra Tech Center Certified Get all user's mailbox size from CLI 
+
+Contents
+
+    1 Get all user's mailbox size from CLI
+        1.1 Purpose
+        1.2 Resolution
+        1.3 Additional Content
+
+Get all user's mailbox size from CLI
+
+Run following command as zimbra user to check all user's mailbox size:-
+
+su - zimbra
+all_accounts=`zmprov -l gaa`; for account in $all_accounts; do mbox_size=`zmmailbox -z -m $account gms`; echo "Mailbox size of $account = $mbox_size"; done ;
+
+
