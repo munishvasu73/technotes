@@ -1,0 +1,3 @@
+zmprov mcf +zimbraHttpThrottleSafeIPs <IP>
+zmprov ms `zmhostname` +zimbraHttpThrottleSafeIPs <IP>
+zmmailboxdctl restart
