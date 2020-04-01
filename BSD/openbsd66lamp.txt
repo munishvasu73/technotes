@@ -1,0 +1,42 @@
+
+Openbsd 6.6 
+
+>>> LAMP INSTALLATION <<,
+
+Preinstallation
+
+1>
+#su -
+#echo "permit nopass keepenv :wheel" > /etc/doas.conf
+2>
+#doas su
+#echo "https://cdn.openbsd.org/pub/OpenBSD" > /etc/installurl
+#exit
+
+Install LAMP
+
+1>
+#pkg_add -r mariadb-client mariadb-server php php-curl php-mysqli pecl73-mcrypt pecl73-imagick
+
+#doas su -
+#cp /etc/php-7.3.sample/* /etc/php-7.3/.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# pkg_add  -u apache-httpd 
+or
+# pkg_add  -i apache-httpd
+
+#pkg_add php-mysqli php
